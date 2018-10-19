@@ -1,0 +1,58 @@
+@charset "UTF-8";
+/*    float:left를 사용할꺼면  overflow:hidden으로 감싸줄것.      */
+* {
+    padding: 0px;
+    margin: 0px;
+}
+
+.tablehead {
+    background-color: gray;
+    color: white;
+    font-weight: bolder;
+}
+.summm {
+    width: 100%;
+    height: 100%;
+    background-color: lightsalmon;
+    color: white;
+    font-weight: bolder;
+    font-size: 1.8em;
+}
+
+
+#gnd { /* 네비게이션 ul 부분 스타일 */
+    overflow: hidden;
+    border-top: 1px solid #333333;
+    border-bottom: 1px solid #333333;
+}
+
+/* 네비게이션 ul 안의 li 부분 스타일 */
+#gnd > li {
+    float: left;
+    padding: 10px;
+    list-style: none;
+
+}
+
+/* navi의 a 에대한 스타일 */
+.navia {
+    color: black;
+    text-decoration: none;
+}
+
+.navia:hover {
+    color: red;
+}
+
+.navia:visited {
+    color: black;
+}
+
+h1.headtitle {
+    padding: 15px;
+    margin-left: 10px;
+}
+
+.content {
+    padding-left: 15px;
+}
