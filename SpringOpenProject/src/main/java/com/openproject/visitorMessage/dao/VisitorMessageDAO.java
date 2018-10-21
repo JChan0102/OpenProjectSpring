@@ -62,7 +62,7 @@ public class VisitorMessageDAO {
         ResultSet rs = null;
         try{
         	
-            String sql = "select * from visitorMessage order by message_id desc limit ?, ?";
+            String sql = "select * from visitorMessage order by visitorMessage_id desc limit ?, ?";
             pstmt = conn.prepareStatement(sql);
             pstmt.setInt(1,firstRow);
             pstmt.setInt(2,endRow);
@@ -80,6 +80,34 @@ public class VisitorMessageDAO {
             JdbcUtil.close(rs);
             JdbcUtil.close(pstmt);
         }
+
+    }
+
+    public int delete(Connection conn, int messageId) throws SQLException {
+        PreparedStatement pstmt = null;
+        try {
+            pstmt = conn.prepareStatement("delete from visitormessage where visitormessage_id = ?");
+            pstmt.setInt(1, messageId);
+            return pstmt.executeUpdate();
+        } finally {
+            JdbcUtil.close(pstmt);
+        }
+    }
+    public VisitorMessageVO select(Connection conn, int messageId) throws SQLException{
+        PreparedStatement pstmt = null;
+        ResultSet rs = null;
+        try{
+            pstmt=conn.prepareStatement("select * from visitormessage where visitormessage_id=?");
+            pstmt.setInt(1,messageId);
+            rs=pstmt.executeQuery();
+            if(rs.next()){
+               return new VisitorMessageVO(rs.getInt("visitormessage_id"),rs.getString("username"),rs.getString("userid"),rs.getString("message"));
+            }
+        } finally {
+            JdbcUtil.close(rs);
+            JdbcUtil.close(pstmt);
+        }
+        return null;
 
     }
 

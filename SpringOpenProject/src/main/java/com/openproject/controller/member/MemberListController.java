@@ -1,4 +1,4 @@
-package com.openproject.controller;
+package com.openproject.controller.member;
 
 import java.util.List;
 

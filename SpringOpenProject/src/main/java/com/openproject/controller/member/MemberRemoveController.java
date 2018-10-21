@@ -1,4 +1,4 @@
-package com.openproject.controller;
+package com.openproject.controller.member;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;

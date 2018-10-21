@@ -1,4 +1,4 @@
-package com.openproject.controller;
+package com.openproject.controller.member;
 
 import java.io.IOException;
 
@@ -48,9 +48,6 @@ public class MemberModifyController {
 			return "redirect:/member/memberList";
 	
 		}
-        
-        session.setAttribute("user", new MemberSessionVO(member.getUserId(), member.getUserName(), member.getUserPhoto()));
-        
        return "redirect:/member/memberList";
 		
 	}

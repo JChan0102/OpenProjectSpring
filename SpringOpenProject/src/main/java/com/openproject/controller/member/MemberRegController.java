@@ -1,4 +1,4 @@
-package com.openproject.controller;
+package com.openproject.controller.member;
 
 import java.io.IOException;
 import java.sql.SQLException;
@@ -32,7 +32,7 @@ private SignUpService service;
 	public ModelAndView memberReg(MemberVO member, HttpServletRequest request)  {
 
 		ModelAndView andView= new ModelAndView();
-	    String loca ="member/loginform";
+	    String loca ="member/signin";
 	    int cnt= 0;
 		try {
 		    cnt=service.signUp(member, request);
@@ -55,7 +55,9 @@ private SignUpService service;
 	    	andView.addObject("msg", "이미 가입하신 이메일입니다!");
 	        loca = "view/memberRegform";
 
-	    }
+	    }else {
+	    	loca="redirect:"+loca;
+		}
 
 		andView.setViewName(loca);
 		

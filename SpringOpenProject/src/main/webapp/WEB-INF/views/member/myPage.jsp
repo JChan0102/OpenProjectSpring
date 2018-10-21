@@ -34,7 +34,8 @@
                 <%--session에 저장된 member객체 user를 통해 id값, name값 가져옴--%>
                 <td>id : ${user.userId}
                 </td>
-            </tr><tr>
+            </tr>
+            <tr>
                 <td>이름 : ${user.userName}
                 </td>
             </tr>

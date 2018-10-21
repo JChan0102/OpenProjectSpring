@@ -42,18 +42,17 @@ public class MemberDAO {
             pstmt.setString(1, userId);
             rs = pstmt.executeQuery();
 
-            if (rs.next()) {
-                return new MemberVO(rs.getString("userid"), rs.getString("userpwd"), rs.getString("username"), rs.getString("userphoto"));
-
-            }
-
-        } catch (SQLException g) {
-            System.out.println("DB연결 실패");
-            g.printStackTrace();
-        } finally {
-            JdbcUtil.close(rs);
-            JdbcUtil.close(pstmt);
+        if (rs.next()) {
+            return new MemberVO(rs.getString("userid"), rs.getString("userpwd"), rs.getString("username"), rs.getString("userphoto"));
         }
+
+    } catch (SQLException g) {
+        System.out.println("DB연결 실패");
+        g.printStackTrace();
+    } finally {
+        JdbcUtil.close(rs);
+        JdbcUtil.close(pstmt);
+    }
         return new MemberVO(null, null, null, null);
     }
 

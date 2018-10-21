@@ -36,7 +36,7 @@ public class GetVisitorMessageListService {
             int firstRow =0;
             int endRow=0;
             if(messageTotalCount>0){
-                firstRow=(pageNumber-1)*MESSAGE_COUNT_PER_PAGE+1;
+                firstRow=(pageNumber-1)*MESSAGE_COUNT_PER_PAGE;
                 endRow=MESSAGE_COUNT_PER_PAGE;
                 messageVOList = messageDAO.selectList(conn,firstRow,endRow);
             }else {

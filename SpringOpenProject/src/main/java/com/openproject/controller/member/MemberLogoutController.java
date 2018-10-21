@@ -1,4 +1,4 @@
-package com.openproject.controller;
+package com.openproject.controller.member;
 
 import javax.servlet.http.HttpServletRequest;
 

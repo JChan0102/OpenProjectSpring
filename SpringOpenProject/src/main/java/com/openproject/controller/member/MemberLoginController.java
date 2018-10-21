@@ -1,4 +1,4 @@
-package com.openproject.controller;
+package com.openproject.controller.member;
 
 import java.io.IOException;
 
@@ -25,12 +25,9 @@ public class MemberLoginController {
 	private SignInService service;
 	
 	@RequestMapping(method = RequestMethod.GET)
-	public ModelAndView getSignInForm(@RequestParam(value="no", required=false) String num) {
+	public String getSignInForm() {
 		
-		ModelAndView modelAndView = new ModelAndView();
-		modelAndView.setViewName("member/loginform");
-		
-		return modelAndView;
+		return "member/loginform";
 	}
 	@RequestMapping(method = RequestMethod.POST)
 	public ModelAndView getSignInProcess(MemberVO member,HttpServletRequest request,HttpServletResponse response) throws ServiceException, IOException, ServletException {
@@ -42,7 +39,7 @@ public class MemberLoginController {
 		view.setViewName(url);
 		
 		if(url.equals("member/loginform")) {
-			view.addObject("msg", "아이디 혹은 비밀번호 일치하지 않습니다.");	
+			view.addObject("msg", "아이디 혹은 비밀번호가 일치하지 않습니다.");
 		}
 			
 		return view;

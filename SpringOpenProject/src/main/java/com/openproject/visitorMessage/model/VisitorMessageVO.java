@@ -7,6 +7,16 @@ public class VisitorMessageVO {
     private String userId;
     private String message;
 
+    public VisitorMessageVO(int id, String userName, String userId, String message) {
+        this.id = id;
+        this.userName = userName;
+        this.userId = userId;
+        this.message = message;
+    }
+
+    public VisitorMessageVO() {
+    }
+
     public int getId() {
         return id;
     }
