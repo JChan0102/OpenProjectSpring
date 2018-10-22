@@ -36,6 +36,7 @@ public class MemModifyService {
         }
     }
 
+
     public void updateMember(MemberVO member, HttpServletRequest request) throws ServiceException, IllegalStateException, IOException {
         Connection conn = null;
         
@@ -43,7 +44,7 @@ public class MemModifyService {
 
         String uploadUri="/uploadFile/userphoto";
          String dir = request.getSession().getServletContext().getRealPath(uploadUri);
-       
+    System.out.println(request.getSession().getServletContext().getRealPath(uploadUri));
          if(!member.getPhotoFile().isEmpty()) {
         	 
         	 String fileName = member.getPhotoFile().getOriginalFilename();

@@ -32,18 +32,20 @@ private SignUpService service;
 	public ModelAndView memberReg(MemberVO member, HttpServletRequest request)  {
 
 		ModelAndView andView= new ModelAndView();
-	    String loca ="member/signin";
+	    String loca ="member/memberRegOk";
 	    int cnt= 0;
 		try {
 		    cnt=service.signUp(member, request);
 		    
 		} catch (SQLException e) {
 			// TODO: handle exception
-			loca="member/fail";
+			andView.addObject("msg", "에러가 발생했습니다. 다시 가입해주세요");
+			loca = "view/memberRegform";
 			e.printStackTrace();
 		} catch (IllegalStateException e) {
 			// TODO Auto-generated catch block
-			loca="member/fail";
+			andView.addObject("msg", "에러가 발생했습니다. 다시 가입해주세요.");
+			loca = "view/memberRegform";
 			e.printStackTrace();
 		} catch (IOException e) {
 			// TODO Auto-generated catch block
@@ -56,7 +58,7 @@ private SignUpService service;
 	        loca = "view/memberRegform";
 
 	    }else {
-	    	loca="redirect:"+loca;
+	    	andView.addObject("member",member);
 		}
 
 		andView.setViewName(loca);
