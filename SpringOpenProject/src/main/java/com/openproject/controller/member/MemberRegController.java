@@ -27,7 +27,6 @@ private SignUpService service;
 		
 		return modelAndView;
 	}
-	
 	@RequestMapping(method=RequestMethod.POST)
 	public ModelAndView memberReg(MemberVO member, HttpServletRequest request)  {
 
