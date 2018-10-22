@@ -5,6 +5,7 @@ import java.sql.SQLException;
 import java.util.Iterator;
 import java.util.List;
 
+import com.openproject.member.dao.JdbcTemplateMemberDAO;
 import org.springframework.beans.factory.annotation.Autowired;
 
 import com.openproject.jdbc.ConnectionProvider;
@@ -14,20 +15,11 @@ import com.openproject.member.model.MemberVO;
 import com.openproject.service.ServiceException;
 
 public class MemListViewService {
-
     @Autowired
-    private MemberDAO dao;
+    private JdbcTemplateMemberDAO dao;
 
     public List<MemberVO> getmemberList() throws ServiceException {
-            Connection conn = null;
-            try {
-                conn = ConnectionProvider.getConnection();
-                       return dao.selectAll(conn);
-            } catch (SQLException e) {
-                throw new ServiceException("메세지등록 실패 : "+ e.getMessage(),e);
-            } finally {
-                JdbcUtil.close(conn);
-            }
+                       return dao.selectAll();
     }
     
     //memberList값을 json형태의 String으로 반환하는 메서드

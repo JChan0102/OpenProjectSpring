@@ -6,6 +6,7 @@ import javax.servlet.http.Cookie;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
+import com.openproject.member.dao.JdbcTemplateMemberDAO;
 import org.springframework.beans.factory.annotation.Autowired;
 
 import com.openproject.jdbc.ConnectionProvider;
@@ -21,31 +22,23 @@ import java.sql.SQLException;
 
 public class SignInService {
 	
+/*
 	@Autowired
     private MemberDAO dao;
+*/
+@Autowired
+  private JdbcTemplateMemberDAO dao;
 
-    public String memSignIn(MemberVO member, HttpServletRequest request, HttpServletResponse response) throws ServiceException, IOException, ServletException {
-        Connection conn = null;
+    public String memSignIn(MemberVO member, HttpServletRequest request, HttpServletResponse response) throws ServiceException, IOException, ServletException { Connection conn = null;
         String url ="member/loginform";
-        try {
-            conn= ConnectionProvider.getConnection();
 
-            MemberVO Dbmember = dao.select(conn,member.getUserId());
+            MemberVO Dbmember = dao.select(member.getUserId());
             if(Dbmember.getUserId()!=null){
              if(Dbmember.pwdEquals(member.getUserPwd())){
                  url = CookieSessionCreate(Dbmember,request,response);
              }
             }
-           
             return url;
-            
-        } catch (SQLException e) {
-            throw new ServiceException("에러 :"+e.getMessage(),e);
-        } finally {
-            JdbcUtil.close(conn);
-        }
-
-
     }
 
     private String CookieSessionCreate(MemberVO member, HttpServletRequest request, HttpServletResponse response){

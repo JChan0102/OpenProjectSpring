@@ -47,7 +47,11 @@
           </td>
           <%--수정 버튼 클릭시 modiid라는 키에 userID값을 get형식으로 보내줌
               삭제 버튼 클릭시 removeid라는 키에 userID값을 get형식으로 보내줌--%>
-          <td><a href="/member/modify?modiid=${member.userId}"><button>수정</button></a> / <a href="/member/remove?removeid=${member.userId}"><button>삭제</button></a></td>
+          <td>
+              <c:if test="${sessionScope.user.userId eq member.userId}">
+                  <a href="/member/modify?modiid=${member.userId}"><button>수정</button></a> / <a href="/member/remove?removeid=${member.userId}"><button>삭제</button></a>
+              </c:if>
+          </td>
       </tr>
 
   </c:forEach>

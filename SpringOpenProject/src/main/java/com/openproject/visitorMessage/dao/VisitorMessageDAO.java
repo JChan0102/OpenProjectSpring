@@ -11,11 +11,6 @@ import java.util.List;
 
 public class VisitorMessageDAO {
 
-    private static VisitorMessageDAO dao = new VisitorMessageDAO();
-    public static VisitorMessageDAO getInstance() {
-        return dao;
-    }
-    private VisitorMessageDAO(){}
     public int insert (Connection conn, VisitorMessageVO message) throws SQLException {
         PreparedStatement pstmt = null;
        try{

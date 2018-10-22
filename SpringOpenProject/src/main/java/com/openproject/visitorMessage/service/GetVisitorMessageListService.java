@@ -8,11 +8,16 @@ import java.util.List;
 import com.openproject.jdbc.ConnectionProvider;
 import com.openproject.jdbc.JdbcUtil;
 import com.openproject.service.ServiceException;
+import com.openproject.visitorMessage.dao.JdbcTemplateVisitorMessageDAO;
 import com.openproject.visitorMessage.dao.VisitorMessageDAO;
 import com.openproject.visitorMessage.model.VisitorMessageListView;
 import com.openproject.visitorMessage.model.VisitorMessageVO;
+import org.springframework.beans.factory.annotation.Autowired;
 
 public class GetVisitorMessageListService {
+
+    @Autowired
+    JdbcTemplateVisitorMessageDAO dao;
 
     private static GetVisitorMessageListService service = new GetVisitorMessageListService();
 
@@ -26,19 +31,16 @@ public class GetVisitorMessageListService {
 
     public VisitorMessageListView getVisitorMessageList(int pageNumber)throws ServiceException{
 
-        Connection conn = null;
         int currentPageNumber=pageNumber;
         try {
-            conn= ConnectionProvider.getConnection();
-            VisitorMessageDAO messageDAO = VisitorMessageDAO.getInstance();
-            int messageTotalCount = messageDAO.selectListCount(conn);
+            int messageTotalCount = dao.selectListCount();
             List<VisitorMessageVO> messageVOList =null;
             int firstRow =0;
             int endRow=0;
             if(messageTotalCount>0){
                 firstRow=(pageNumber-1)*MESSAGE_COUNT_PER_PAGE;
                 endRow=MESSAGE_COUNT_PER_PAGE;
-                messageVOList = messageDAO.selectList(conn,firstRow,endRow);
+                messageVOList = dao.selectList(firstRow,endRow);
             }else {
                 currentPageNumber=0;
                 messageVOList= Collections.emptyList();
@@ -46,10 +48,7 @@ public class GetVisitorMessageListService {
             return new VisitorMessageListView(messageVOList,messageTotalCount,currentPageNumber,MESSAGE_COUNT_PER_PAGE,firstRow,endRow);
         } catch (SQLException e) {
            throw new ServiceException("메세지 목록 구하기 실패: "+ e.getMessage(),e);
-        } finally {
-            JdbcUtil.close(conn);
         }
-
     }
 
 }
