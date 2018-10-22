@@ -19,7 +19,7 @@
             </tr>
             <tr>
                 <td>내용</td>
-                <td><textarea name="message" cols="22" row="4" <c:if test="${!(sessionScope.containsKey('user'))}"> placeholder="로그인후 이용가능합니다." readonly </c:if> ></textarea></td>
+                <td><textarea name="message" cols="22" row="4"></textarea></td>
 
             </tr>
             <tr>
