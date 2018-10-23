@@ -23,11 +23,13 @@ public class MemListViewService {
     }
     
     //memberList값을 json형태의 String으로 반환하는 메서드
+
+
     public String jsonMemberList(){
         List<MemberVO> list = getmemberList();
         String stringList = "{\"members\" : [ ";
 
-        Iterator iterator = list.iterator();
+        Iterator<MemberVO> iterator = list.iterator();
 
         while (iterator.hasNext()){
 

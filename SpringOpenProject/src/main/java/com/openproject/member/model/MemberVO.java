@@ -8,6 +8,15 @@ public class MemberVO {
 	private String userName;
 	private String userPhoto;
 	private MultipartFile photoFile;
+	private int idx;
+
+	public int getIdx() {
+		return idx;
+	}
+
+	public void setIdx(int idx) {
+		this.idx = idx;
+	}
 
 	public MemberVO() {
 	}

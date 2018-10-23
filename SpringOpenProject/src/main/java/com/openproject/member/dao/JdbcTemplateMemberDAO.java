@@ -1,13 +1,14 @@
 package com.openproject.member.dao;
 
-import com.openproject.jdbc.JdbcUtil;
 import com.openproject.member.model.MemberVO;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.jdbc.core.JdbcTemplate;
+import org.springframework.jdbc.core.PreparedStatementCreator;
 import org.springframework.jdbc.core.RowMapper;
+import org.springframework.jdbc.support.GeneratedKeyHolder;
+import org.springframework.jdbc.support.KeyHolder;
 
 import java.sql.*;
-import java.util.ArrayList;
 import java.util.List;
 
 public class JdbcTemplateMemberDAO {
@@ -19,12 +20,40 @@ public class JdbcTemplateMemberDAO {
     Statement stmt = null;
     PreparedStatement pstmt = null;
 
-    public int insert( MemberVO member) throws SQLException {
+    public int insert( final MemberVO member) throws SQLException {
 
-        int cnt=0;
+     /*   int cnt=0;
             String sql = "insert into memberinfo values (?,?,?,?)";
            cnt=  jdbcTemplate.update(sql,member.getUserId(),member.getUserPwd(),member.getUserName(),member.getUserPhoto());
-           return cnt;
+           return cnt;*/
+        int resultCnt = 0;
+        KeyHolder keyHolder = new GeneratedKeyHolder();
+       final String insert_sql = "insert into memberinfo (userId, userpwd, username, userphoto) values(?, ?, ?, ?)";
+
+//      resultCnt = jdbcTemplate.update(insert_sql, memberInfo.getUserID(), memberInfo.getUserPW(),
+//            memberInfo.getUserName(), memberInfo.getUserPhoto());
+        resultCnt = jdbcTemplate.update(new PreparedStatementCreator() {
+
+            @Override
+            public PreparedStatement createPreparedStatement(Connection con) throws SQLException {
+
+                PreparedStatement pstmt = con.prepareStatement(insert_sql, new String[] { "idx" });
+                pstmt.setString(1, member.getUserId());
+                pstmt.setString(2, member.getUserPwd());
+                pstmt.setString(3, member.getUserName());
+                pstmt.setString(4, member.getUserPhoto());
+
+                return pstmt;
+            }
+        }, keyHolder);
+
+        Number keyValue = keyHolder.getKey();
+
+        member.setIdx(keyValue.intValue());
+        System.out.print(member.getIdx());
+
+        return resultCnt;
+
     }
 
 
@@ -67,9 +96,9 @@ public class JdbcTemplateMemberDAO {
     }
 
     public void update( MemberVO member) {
-        String sql = "update memberifo set userpwd=?, username=?, userphoto=? where userud=?";
+        String sql = "update memberinfo set userpwd=?, username=?, userphoto=? where userud=?";
         jdbcTemplate.update(sql,member.getUserPwd(),member.getUserName(),member.getUserPhoto(),member.getUserId());
 
 
     }
-}
+    }
