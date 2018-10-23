@@ -13,7 +13,9 @@ import com.openproject.jdbc.JdbcUtil;
 import com.openproject.member.dao.MemberDAO;
 import com.openproject.member.model.MemberVO;
 import com.openproject.service.ServiceException;
+import org.springframework.stereotype.Service;
 
+@Service
 public class MemListViewService {
     @Autowired
     private JdbcTemplateMemberDAO dao;
@@ -33,7 +35,7 @@ public class MemListViewService {
 
         while (iterator.hasNext()){
 
-         MemberVO member = (MemberVO) iterator.next();
+         MemberVO member = iterator.next();
 
          stringList+= "{ \"userId\" : \""+ member.getUserId()+ "\", "+
                       " \"userPwd\" : \""+ member.getUserPwd()+ "\", "+

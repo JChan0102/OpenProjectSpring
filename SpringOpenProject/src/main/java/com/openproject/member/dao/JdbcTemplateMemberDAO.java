@@ -7,10 +7,12 @@ import org.springframework.jdbc.core.PreparedStatementCreator;
 import org.springframework.jdbc.core.RowMapper;
 import org.springframework.jdbc.support.GeneratedKeyHolder;
 import org.springframework.jdbc.support.KeyHolder;
+import org.springframework.stereotype.Repository;
 
 import java.sql.*;
 import java.util.List;
 
+@Repository
 public class JdbcTemplateMemberDAO {
 
 @Autowired
@@ -96,7 +98,7 @@ public class JdbcTemplateMemberDAO {
     }
 
     public void update( MemberVO member) {
-        String sql = "update memberinfo set userpwd=?, username=?, userphoto=? where userud=?";
+        String sql = "update memberinfo set userpwd=?, username=?, userphoto=? where userid=?";
         jdbcTemplate.update(sql,member.getUserPwd(),member.getUserName(),member.getUserPhoto(),member.getUserId());
 
 

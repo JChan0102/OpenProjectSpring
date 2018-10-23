@@ -1,6 +1,5 @@
 package com.openproject.member.service;
 
-import javax.servlet.RequestDispatcher;
 import javax.servlet.ServletException;
 import javax.servlet.http.Cookie;
 import javax.servlet.http.HttpServletRequest;
@@ -9,23 +8,16 @@ import javax.servlet.http.HttpServletResponse;
 import com.openproject.member.dao.JdbcTemplateMemberDAO;
 import org.springframework.beans.factory.annotation.Autowired;
 
-import com.openproject.jdbc.ConnectionProvider;
-import com.openproject.jdbc.JdbcUtil;
-import com.openproject.member.dao.MemberDAO;
 import com.openproject.member.model.MemberSessionVO;
 import com.openproject.member.model.MemberVO;
 import com.openproject.service.ServiceException;
+import org.springframework.stereotype.Service;
 
 import java.io.IOException;
 import java.sql.Connection;
-import java.sql.SQLException;
-
+@Service
 public class SignInService {
-	
-/*
-	@Autowired
-    private MemberDAO dao;
-*/
+
 @Autowired
   private JdbcTemplateMemberDAO dao;
 

@@ -3,7 +3,9 @@ package com.openproject.visitorMessage.service;
 import com.openproject.visitorMessage.dao.JdbcTemplateVisitorMessageDAO;
 import com.openproject.visitorMessage.model.VisitorMessageVO;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.stereotype.Service;
 
+@Service
 public class DeleteVisitorMessageService {
 
 /*    @Autowired

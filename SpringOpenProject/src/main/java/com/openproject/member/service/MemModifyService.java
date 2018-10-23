@@ -16,7 +16,9 @@ import com.openproject.jdbc.JdbcUtil;
 import com.openproject.member.dao.MemberDAO;
 import com.openproject.member.model.MemberVO;
 import com.openproject.service.ServiceException;
+import org.springframework.stereotype.Service;
 
+@Service
 public class MemModifyService {
 
     @Autowired

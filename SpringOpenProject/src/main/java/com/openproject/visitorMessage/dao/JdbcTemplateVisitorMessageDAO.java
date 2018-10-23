@@ -6,13 +6,16 @@ import com.openproject.visitorMessage.model.VisitorMessageVO;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.jdbc.core.JdbcTemplate;
 import org.springframework.jdbc.core.RowMapper;
+import org.springframework.stereotype.Repository;
 
 import java.sql.*;
 import java.util.ArrayList;
 import java.util.Collections;
 import java.util.List;
 
+@Repository
 public class JdbcTemplateVisitorMessageDAO {
+
     @Autowired
     JdbcTemplate jdbcTemplate;
 

@@ -10,7 +10,9 @@ import com.openproject.jdbc.ConnectionProvider;
 import com.openproject.jdbc.JdbcUtil;
 import com.openproject.member.dao.MemberDAO;
 import com.openproject.service.ServiceException;
+import org.springframework.stereotype.Service;
 
+@Service
 public class MemRemoveService {
 
     @Autowired
