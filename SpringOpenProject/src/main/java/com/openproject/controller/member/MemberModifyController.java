@@ -38,8 +38,7 @@ public class MemberModifyController {
 		
 	}
 	@RequestMapping(method=RequestMethod.POST)
-	public String memberUpdate(MemberVO member, HttpServletRequest request, HttpSession session) throws ServiceException {
-	
+	public String memberUpdate(MemberVO member, HttpServletRequest request) throws ServiceException {
         
         try {
 			service.updateMember(member,request);

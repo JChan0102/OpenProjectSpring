@@ -52,7 +52,6 @@ public class JdbcTemplateMemberDAO {
         Number keyValue = keyHolder.getKey();
 
         member.setIdx(keyValue.intValue());
-        System.out.print(member.getIdx());
 
         return resultCnt;
 

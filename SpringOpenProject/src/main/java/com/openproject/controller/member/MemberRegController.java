@@ -9,6 +9,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
+import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.servlet.ModelAndView;
 
 import com.openproject.member.model.MemberVO;
@@ -24,12 +25,11 @@ private SignUpService service;
 	public ModelAndView getSignUpForm() {
 		ModelAndView modelAndView = new ModelAndView();
 	modelAndView.setViewName("member/memberRegform");
-		
+
 		return modelAndView;
 	}
 	@RequestMapping(method=RequestMethod.POST)
 	public ModelAndView memberReg(MemberVO member, HttpServletRequest request)  {
-
 		ModelAndView andView= new ModelAndView();
 	    String loca ="member/memberRegOk";
 	    int cnt= 0;
