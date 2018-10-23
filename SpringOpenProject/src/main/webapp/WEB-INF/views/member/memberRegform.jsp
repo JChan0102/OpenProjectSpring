@@ -37,9 +37,9 @@
                 <td><p id="ckuserName"></p></td>
             </tr>
             <tr>
-                <td><label for="userPhoto">사진</label></td>
+                <td><label for="photoFile">사진</label></td>
                 <td><input type="file" name="photoFile" id="photoFile">
-               </td>
+              </td>
             </tr>
             <tr>
                 <td colspan="2" style="text-align: center"><input type="submit"  onsubmit="allck()" value="등록"></td>
