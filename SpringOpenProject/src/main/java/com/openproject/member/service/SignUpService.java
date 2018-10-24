@@ -2,19 +2,16 @@ package com.openproject.member.service;
 
 import java.io.File;
 import java.io.IOException;
-import java.sql.Connection;
 import java.sql.SQLException;
 
 import javax.servlet.http.HttpServletRequest;
 
-import com.openproject.member.dao.JdbcTemplateMemberDAO;
+import com.openproject.member.dao.MemberDAOInterface;
+import com.openproject.member.dao.MybatisMemberDAO;
+import org.mybatis.spring.SqlSessionTemplate;
 import org.springframework.beans.factory.annotation.Autowired;
 
-import com.openproject.jdbc.ConnectionProvider;
-import com.openproject.jdbc.JdbcUtil;
-import com.openproject.member.dao.MemberDAO;
 import com.openproject.member.model.MemberVO;
-import com.openproject.service.ServiceException;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 
@@ -22,12 +19,13 @@ import org.springframework.transaction.annotation.Transactional;
 public class SignUpService {
 /*
 
-	@Autowired
-    private MemberDAO dao;
-*/
-
     @Autowired
-    private JdbcTemplateMemberDAO dao;
+    private MybatisMemberDAO dao;
+*/
+@Autowired
+private SqlSessionTemplate sqlSessionTemplate;
+
+private MemberDAOInterface dao;
 
     @Transactional
     public int signUp(MemberVO member, HttpServletRequest request) throws SQLException, IllegalStateException, IOException {
@@ -47,6 +45,7 @@ public class SignUpService {
         }
         member.setUserPhoto(newFileName);
 
+        dao=sqlSessionTemplate.getMapper(MemberDAOInterface.class);
 
         num = dao.insert(member);
         return num;

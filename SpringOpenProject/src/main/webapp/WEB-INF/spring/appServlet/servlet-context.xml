@@ -48,6 +48,20 @@
 		<beans:property name="user" value="zerock" />
 		<beans:property name="password" value="zerock" />
 	</beans:bean>
+
+	<!--mybatis 설정-->
+	<beans:bean id = "sqlSeesinonFactory" class="org.mybatis.spring.SqlSessionFactoryBean">
+		<beans:property name="dataSource" ref="dataSource"/>
+		<beans:property name="mapperLocations" value="classpath:mapper/*.xml"/>
+	</beans:bean>
+
+	<!--SqlSessionTemplate 빈등록-->
+	<beans:bean id="sqlSessionTemplate" class="org.mybatis.spring.SqlSessionTemplate">
+		<beans:constructor-arg index="0" ref="sqlSeesinonFactory"/>
+	</beans:bean>
+
+
+
 	<!--jdbc template 설정-->
 	<beans:bean
 			id="jdbcTemplate" class="org.springframework.jdbc.core.JdbcTemplate"

@@ -8,7 +8,9 @@ import java.sql.SQLException;
 import javax.servlet.http.HttpServletRequest;
 
 import com.openproject.member.dao.JdbcTemplateMemberDAO;
+import com.openproject.member.dao.MemberDAOInterface;
 import com.openproject.member.model.MemberSessionVO;
+import org.mybatis.spring.SqlSessionTemplate;
 import org.springframework.beans.factory.annotation.Autowired;
 
 import com.openproject.jdbc.ConnectionProvider;
@@ -22,18 +24,19 @@ import org.springframework.stereotype.Service;
 public class MemModifyService {
 
     @Autowired
-    private JdbcTemplateMemberDAO dao;
+    private SqlSessionTemplate sqlSessionTemplate;
+    private MemberDAOInterface dao;
 
-	
+
     public MemberVO selectMember(String memberId) throws ServiceException {
-
+        dao= sqlSessionTemplate.getMapper(MemberDAOInterface.class);
             return dao.select(memberId);
 
     }
 
 
     public void updateMember(MemberVO member, HttpServletRequest request) throws ServiceException, IllegalStateException, IOException {
-
+        dao= sqlSessionTemplate.getMapper(MemberDAOInterface.class);
         String newFileName = "";
 
         String uploadUri="/uploadFile/userphoto";

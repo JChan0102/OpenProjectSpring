@@ -6,6 +6,8 @@ import java.util.Iterator;
 import java.util.List;
 
 import com.openproject.member.dao.JdbcTemplateMemberDAO;
+import com.openproject.member.dao.MemberDAOInterface;
+import org.mybatis.spring.SqlSessionTemplate;
 import org.springframework.beans.factory.annotation.Autowired;
 
 import com.openproject.jdbc.ConnectionProvider;
@@ -18,9 +20,12 @@ import org.springframework.stereotype.Service;
 @Service
 public class MemListViewService {
     @Autowired
-    private JdbcTemplateMemberDAO dao;
+    private SqlSessionTemplate sqlSessionTemplate;
+    private MemberDAOInterface dao;
+
 
     public List<MemberVO> getmemberList() throws ServiceException {
+        dao= sqlSessionTemplate.getMapper(MemberDAOInterface.class);
                        return dao.selectAll();
     }
     

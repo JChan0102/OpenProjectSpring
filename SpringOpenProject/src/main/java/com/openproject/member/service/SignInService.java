@@ -5,7 +5,8 @@ import javax.servlet.http.Cookie;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
-import com.openproject.member.dao.JdbcTemplateMemberDAO;
+import com.openproject.member.dao.MemberDAOInterface;
+import org.mybatis.spring.SqlSessionTemplate;
 import org.springframework.beans.factory.annotation.Autowired;
 
 import com.openproject.member.model.MemberSessionVO;
@@ -18,12 +19,19 @@ import java.sql.Connection;
 @Service
 public class SignInService {
 
-@Autowired
-  private JdbcTemplateMemberDAO dao;
+    /*
+
+       @Autowired
+       private MybatisMemberDAO dao;
+   */
+    @Autowired
+    private SqlSessionTemplate sqlSessionTemplate;
+    private MemberDAOInterface dao;
 
     public String memSignIn(MemberVO member, HttpServletRequest request, HttpServletResponse response) throws ServiceException, IOException, ServletException { Connection conn = null;
         String url ="member/loginform";
 
+        dao= sqlSessionTemplate.getMapper(MemberDAOInterface.class);
             MemberVO Dbmember = dao.select(member.getUserId());
             if(Dbmember.getUserId()!=null){
              if(Dbmember.pwdEquals(member.getUserPwd())){
