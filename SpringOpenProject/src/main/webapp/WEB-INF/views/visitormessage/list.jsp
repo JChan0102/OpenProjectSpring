@@ -35,11 +35,11 @@
             <table border="1">
                 <c:forEach var="message" items="${viewData.messageList }">
                     <tr>
-                        <td>메시지 번호: ${message.id } <br />
+                        <td>메시지 번호: ${message.visitormessage_id } <br />
                             손님 이름: ${message.userName }	<br />
                             메시지:${message.message } <br />
-                            <a href="/visitormessage/del?messageId=${message.id }">[삭제하기]</a>
-                            <a href="/visitormessage/view/${message.id }">상세보기</a>
+                            <a href="/visitormessage/del?messageId=${message.visitormessage_id }">[삭제하기]</a>
+                            <a href="/visitormessage/view/${message.visitormessage_id }">상세보기</a>
                         </td>
                     </tr>
                 </c:forEach>

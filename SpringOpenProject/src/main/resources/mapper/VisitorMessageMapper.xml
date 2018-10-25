@@ -1,0 +1,25 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+        "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+
+<mapper namespace="mapper.VisitorMessageMapper">
+
+
+    <insert id="insert" parameterType="com.openproject.visitorMessage.model.VisitorMessageVO"
+    useGeneratedKeys="true" keyProperty="visitormessage_id">
+        insert into visitormessage (username, userid, message) VALUES (#{userName},#{userId},#{message})
+    </insert>
+
+    <select id="selectListCount" resultType="int">
+        select count(*) from visitormessage</select>
+    <select id="selectList" resultType="com.openproject.visitorMessage.model.VisitorMessageVO">
+        select * from visitormessage order by visitormessage_id desc limit #{firstRow},#{endRow}
+    </select>
+    <delete id="delete">
+        delete from visitormessage where visitormessage_id=#{messageId}
+    </delete>
+    <select id="select" resultType="com.openproject.visitorMessage.model.VisitorMessageVO">
+        select * from visitormessage where visitormessage_id=#{messageId}
+
+    </select>
+</mapper>

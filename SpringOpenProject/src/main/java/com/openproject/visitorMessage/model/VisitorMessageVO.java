@@ -2,13 +2,13 @@ package com.openproject.visitorMessage.model;
 
 public class VisitorMessageVO {
 
-    private int id;
+    private int visitormessage_id;
     private String userName;
     private String userId;
     private String message;
 
     public VisitorMessageVO(int id, String userName, String userId, String message) {
-        this.id = id;
+        this.visitormessage_id = visitormessage_id;
         this.userName = userName;
         this.userId = userId;
         this.message = message;
@@ -17,12 +17,12 @@ public class VisitorMessageVO {
     public VisitorMessageVO() {
     }
 
-    public int getId() {
-        return id;
+    public int getVisitormessage_id() {
+        return visitormessage_id;
     }
 
-    public void setId(int id) {
-        this.id = id;
+    public void setVisitormessage_id(int visitormessage_id) {
+        this.visitormessage_id = visitormessage_id;
     }
 
     public String getUserName() {
@@ -52,7 +52,7 @@ public class VisitorMessageVO {
     @Override
     public String toString() {
         return "visitorMessageVO{" +
-                "id=" + id +
+                "visitormessage_id=" + visitormessage_id +
                 ", userName='" + userName + '\'' +
                 ", userId='" + userId + '\'' +
                 ", message='" + message + '\'' +

@@ -15,7 +15,7 @@
 <div style="width: 750px; margin: auto">
     <%@include file="/WEB-INF/views/header/menu.jsp" %>
 
-id : ${message.id}<br/>
+id : ${message.visitormessage_id}<br/>
 userName : ${message.userName}<br/>
 userId : ${message.userId}<br/>
 message : ${message.message}<br/>

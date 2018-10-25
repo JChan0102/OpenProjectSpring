@@ -55,7 +55,7 @@ public class JdbcTemplateVisitorMessageDAO {
 
     private VisitorMessageVO makeMessageFromResultSet(ResultSet rs) throws SQLException {
         VisitorMessageVO message = new VisitorMessageVO();
-        message.setId(rs.getInt("visitormessage_id"));
+        message.setVisitormessage_id(rs.getInt("visitormessage_id"));
         message.setUserName(rs.getString("username"));
         message.setUserId(rs.getString("userid"));
         message.setMessage(rs.getString("message"));

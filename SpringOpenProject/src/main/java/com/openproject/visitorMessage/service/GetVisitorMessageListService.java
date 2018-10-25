@@ -9,6 +9,7 @@ import com.openproject.jdbc.ConnectionProvider;
 import com.openproject.jdbc.JdbcUtil;
 import com.openproject.service.ServiceException;
 import com.openproject.visitorMessage.dao.JdbcTemplateVisitorMessageDAO;
+import com.openproject.visitorMessage.dao.MybatisVisitorMessageDAO;
 import com.openproject.visitorMessage.dao.VisitorMessageDAO;
 import com.openproject.visitorMessage.model.VisitorMessageListView;
 import com.openproject.visitorMessage.model.VisitorMessageVO;
@@ -18,9 +19,8 @@ import org.springframework.stereotype.Service;
 
 @Service
 public class GetVisitorMessageListService {
-
     @Autowired
-    JdbcTemplateVisitorMessageDAO dao;
+    private MybatisVisitorMessageDAO dao;
 
     private static GetVisitorMessageListService service = new GetVisitorMessageListService();
 

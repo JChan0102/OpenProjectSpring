@@ -1,6 +1,7 @@
 package com.openproject.visitorMessage.service;
 
 import com.openproject.visitorMessage.dao.JdbcTemplateVisitorMessageDAO;
+import com.openproject.visitorMessage.dao.MybatisVisitorMessageDAO;
 import com.openproject.visitorMessage.model.VisitorMessageVO;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
@@ -10,9 +11,11 @@ public class DeleteVisitorMessageService {
 
 /*    @Autowired
     VisitorMessageDAO dao;*/
-
+/*
 @Autowired
-    JdbcTemplateVisitorMessageDAO dao;
+    JdbcTemplateVisitorMessageDAO dao;*/
+@Autowired
+ private MybatisVisitorMessageDAO dao;
 
     public VisitorMessageVO selectService(int messageId) throws MessageNotFoundException {
 
