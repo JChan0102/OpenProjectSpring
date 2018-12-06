@@ -74,11 +74,11 @@
                 url:'<%=request.getContextPath()%>/memberListXML',
                 datatype:'xml',
                 success:function (data) {
-          //          $('#jsonS').append($(data).text());
+                    //          $('#jsonS').append($(data).text());
                     $('#jj').append('XML 형식 ajax로 받은값');
                     $(data).find('member').each(function () {
                         //공백제거한 값으로 table 생성
-                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                          var userid = $(this).find('userId').text().trim();
+                        var userid = $(this).find('userId').text().trim();
                         var userpwd =$(this).find('userPwd').text().trim();
                         var username = $(this).find('userName').text().trim();
                         var userphoto = $(this).find('userPhoto').text().trim();

@@ -27,8 +27,6 @@ public class MybatisMemberDAO {
     }
 
 
-
-
     public MemberVO select(String userId) {
 
         return sqlSessionTemplate.selectOne(mapperPath+".selectById",userId);

@@ -5,7 +5,9 @@ import java.sql.SQLException;
 
 import javax.servlet.http.HttpServletRequest;
 
+import com.openproject.member.service.RegistrationNotifier;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.mail.MailSender;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
@@ -18,6 +20,10 @@ import com.openproject.member.service.SignUpService;
 @Controller
 @RequestMapping(value = "/member/signup")
 public class MemberRegController {
+
+	@Autowired
+	private RegistrationNotifier notifier;
+
 @Autowired
 private SignUpService service;
 
@@ -58,6 +64,7 @@ private SignUpService service;
 
 	    }else {
 	    	andView.addObject("member",member);
+	    	notifier.mailSendHtml(member.getUserId());
 		}
 
 		andView.setViewName(loca);

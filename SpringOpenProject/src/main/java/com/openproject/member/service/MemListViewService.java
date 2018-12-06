@@ -24,11 +24,11 @@ public class MemListViewService {
     private MemberDAOInterface dao;
 
 
-    public List<MemberVO> getmemberList() throws ServiceException {
+ public List<MemberVO> getmemberList() throws ServiceException {
         dao= sqlSessionTemplate.getMapper(MemberDAOInterface.class);
-                       return dao.selectAll();
+        return dao.selectAll();
     }
-    
+
     //memberList값을 json형태의 String으로 반환하는 메서드
 
 

@@ -44,9 +44,9 @@
 			class="com.mchange.v2.c3p0.ComboPooledDataSource">
 		<beans:property name="driverClass" value="com.mysql.jdbc.Driver" />
 		<beans:property
-				name="jdbcUrl" value="jdbc:mysql://localhost/book_ex?characterEncoding=utf8" />
-		<beans:property name="user" value="zerock" />
-		<beans:property name="password" value="zerock" />
+				name="jdbcUrl" value="jdbc:mysql://mysql.cxwmjvbm4iat.ap-northeast-2.rds.amazonaws.com/library?characterEncoding=utf8" />
+		<beans:property name="user" value="lib" />
+		<beans:property name="password" value="bitcamp1234" />
 	</beans:bean>
 
 	<!--mybatis 설정-->
@@ -84,5 +84,25 @@
 	</beans:bean>
 	<!-- @Transactional 애노테이션 활성화 -->
 	<tx:annotation-driven transaction-manager="transactionManager"/>
-	
+
+	<beans:bean id="mailSender"
+				class="org.springframework.mail.javamail.JavaMailSenderImpl">
+		<beans:property name="host" value="smtp.gmail.com" />
+		<beans:property name="port" value="587" /><!-- 465 or 25-->
+		<beans:property name="username" value="jchan010222@gmail.com" />
+		<beans:property name="password" value="bitcamp1234" />
+		<beans:property name="defaultEncoding" value="utf-8" />
+		<beans:property name="javaMailProperties">
+			<beans:props>
+				<beans:prop key="mail.transport.protocol">smtp</beans:prop>
+				<beans:prop key="mail.smtp.auth">true</beans:prop>
+				<beans:prop key="mail.smtp.starttls.enable">true</beans:prop>
+				<beans:prop key="mail.debug">true</beans:prop>
+			</beans:props>
+		</beans:property>
+	</beans:bean>
+
+	<beans:bean id="registrationNotifier" class="com.openproject.member.service.RegistrationNotifier"/>
+	<beans:bean class="com.openproject.encript.Sha256" id="sha256"/>
+    <beans:bean class="com.openproject.encript.AES256Util" id="aes256Util"/>
 </beans:beans>
